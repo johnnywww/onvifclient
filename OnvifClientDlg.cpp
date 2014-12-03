@@ -289,6 +289,10 @@ void COnvifClientDlg::OnBtnInfo()
 	for(std::list<std::string>::iterator iter = retInfo1->getInfos().begin(); iter != retInfo1->getInfos().end(); iter++) {
 		m_ComboMediaProfiles.AddString(getCString(*iter));
 	}
+	if (m_ComboMediaProfiles.GetCount() > 0) {
+		m_ComboMediaProfiles.SetCurSel(0);
+	}
+
 }
 
 void COnvifClientDlg::OnDblclkListDevice() 

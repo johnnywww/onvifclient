@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "SoapUtils.h"
 
+#define SOAP_RECV_TIMEOUT 5
 
 CSoapUtils::CSoapUtils()
 {
@@ -21,7 +22,7 @@ struct soap* CSoapUtils::newSoap()
 		return NULL;
 	}
 	soap_set_namespaces(psoap, namespaces);
-	psoap->recv_timeout = 6;
+	psoap->recv_timeout = SOAP_RECV_TIMEOUT;
 	return psoap;
 }
 

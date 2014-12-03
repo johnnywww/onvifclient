@@ -37,6 +37,11 @@ CBaseRetInfo* CGetStreamUrlImpl::getInfo(std::string serviceAddress, std::string
 	if (CAppTools::getInstance().getInvalidServiceAddressRetInfo(serviceAddress, result)) {
 		return result;
 	}
+	if (mediaProfile.length() < 1) {
+		result->setRetCode(RET_CODE_ERROR_INVALID_VALUE);
+		result->setMessage("no media profile");
+		return result;
+	}
 	struct soap* psoap = CSoapUtils::getInstance().newSoapRetInfo(result);
 	if (NULL == psoap) {
 		return result;

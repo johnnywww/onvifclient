@@ -111,6 +111,19 @@ SOURCE=.\Device.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\duration.cpp
+
+!IF  "$(CFG)" == "OnvifClient - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "OnvifClient - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
 SOURCE=.\FactoryImpl.cpp
 # End Source File
 # Begin Source File
@@ -381,6 +394,10 @@ SOURCE=.\containerList.h
 # Begin Source File
 
 SOURCE=.\Device.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\duration.h
 # End Source File
 # Begin Source File
 

@@ -51,7 +51,7 @@ CBaseRetInfo* CGetMediaProfilesImpl::getInfo(std::string serviceAddress) {
 		for(int i = 0; i < trt__GetProfilesResponse.__sizeProfiles; i++) {
 			tt__Profile* profile = trt__GetProfilesResponse.Profiles[i];
 			if ((NULL != profile) && (NULL != profile->Name)) {
-				result->addInfo(profile->Name);
+				result->addInfo(profile->token);
 			}
 		}
 	}
