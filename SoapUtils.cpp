@@ -25,13 +25,11 @@ struct soap* CSoapUtils::newSoap()
 	return psoap;
 }
 
-struct soap* CSoapUtils::newProbeSoap(wsdd__ProbeType *req_)
+struct soap* CSoapUtils::newProbeSoap(wsdd__ProbeType *req_, CBaseRetInfo* retInfo)
 {
-	struct  soap* psoap = newSoap();
+	struct  soap* psoap = newSoapRetInfo(retInfo);
 	if (NULL == psoap)
 		return NULL;
-	if (0 == psoap->recv_timeout)
-		psoap->recv_timeout = 6;
 	struct SOAP_ENV__Header* header = static_cast<struct SOAP_ENV__Header*>(my_soap_malloc(psoap, sizeof(struct SOAP_ENV__Header)));
 
 	soap_default_SOAP_ENV__Header(psoap, header);
@@ -41,7 +39,7 @@ struct soap* CSoapUtils::newProbeSoap(wsdd__ProbeType *req_)
 
 	if (CoCreateGuid(&guid))
 	{
-		fprintf(stderr, "create guid error\n");
+		setRetInfoAndDeleteSoap(RET_CODE_ERROR_INVALID_VALUE, "create guid error", psoap, retInfo);
 		return NULL;
 	}
 
@@ -72,4 +70,46 @@ void CSoapUtils::deleteSoap(struct soap* psoap)
 	soap_end(psoap); // clean up and remove deserialized data
 	soap_done(psoap); // detach context (last use and no longer in scope)	
 	free(psoap);
+}
+
+void CSoapUtils::setSoapErrorInfo(const int retCode, struct soap* psoap, CBaseRetInfo* retInfo)
+{
+	if (NULL == retInfo)
+		return;
+	retInfo->setRetCode(retCode);
+	if (psoap->error) {
+		char st[255];
+		memset(st, 0, 255);
+		soap_sprint_fault(psoap, st, 255);
+		retInfo->setMessage(st);
+	}
+}
+
+void CSoapUtils::setSoapErrorInfoAndDeleteSoap(const int retCode, struct soap* psoap, CBaseRetInfo* retInfo)
+{
+	setSoapErrorInfo(retCode, psoap, retInfo);
+	deleteSoap(psoap);
+}
+
+struct soap* CSoapUtils::newSoapRetInfo(CBaseRetInfo* retInfo)
+{
+	struct soap* result = newSoap();
+	if (NULL == result) {
+		retInfo->setRetCode(RET_CODE_ERROR_NULL_OBJECT);
+		retInfo->setMessage("new soap error");
+	}	
+	return result;
+}
+
+void CSoapUtils::setRetInfoAndDeleteSoap(const int retCode, std::string msg, struct soap* psoap, CBaseRetInfo* retInfo)
+{
+	retInfo->setRetCode(retCode);
+	retInfo->setMessage(msg);
+	deleteSoap(psoap);
+}
+
+void CSoapUtils::setSoapSuccessInfoAndDeleteSoap(struct soap* psoap, CBaseRetInfo* retInfo)
+{
+	retInfo->setRetCode(RET_CODE_SUCCESS);
+	deleteSoap(psoap);
 }

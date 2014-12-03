@@ -10,6 +10,7 @@
 #include <sstream>
 
 #include "appCommon.h"
+#include "BaseRetInfo.h"
 
 class CAppTools
 {
@@ -49,6 +50,7 @@ public:
 	bool isRetSuccess(const int retCode);
 	bool isExceedTime(const time_t now, const time_t past, const int intervalSec);
 	bool isValidIP(const char* ip);
+	bool getInvalidServiceAddressRetInfo(std::string serviceAddress, CBaseRetInfo* retInfo);
 private:
 	CAppTools();
 private:

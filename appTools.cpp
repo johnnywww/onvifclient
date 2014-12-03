@@ -84,6 +84,17 @@ bool CAppTools::isValidIP(const char* ip)
 	return false;
 }
 
+bool CAppTools::getInvalidServiceAddressRetInfo(std::string serviceAddress, CBaseRetInfo* retInfo)
+{
+	bool result = false;
+	if (serviceAddress.length() < 1) {
+		retInfo->setRetCode(RET_CODE_ERROR_INVALID_VALUE);
+		retInfo->setMessage("no service address");
+		result = true;
+	}
+	return result;
+}
+
 
 
 

@@ -3,53 +3,55 @@
 <pre>
 <h1>Build Log</h1>
 <h3>
---------------------Configuration: OnvifClient - Win32 Release--------------------
+--------------------Configuration: OnvifClient - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP76.tmp" with contents
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP49.tmp" with contents
 [
-/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fo"Release/" /Fd"Release/" /FD /c 
-"C:\Source\c++\OnvifClient\stdsoap2.c"
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_AFXDLL" /Fp"Debug/OnvifClient.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\Source\c++\OnvifClient\SoapUtils.cpp"
 ]
-Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP76.tmp" 
-Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP77.tmp" with contents
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP49.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP4A.tmp" with contents
 [
-/nologo /subsystem:windows /incremental:no /pdb:"Release/OnvifClient.pdb" /machine:I386 /out:"Release/OnvifClient.exe" 
-".\Release\appTools.obj"
-".\Release\BaseRetInfo.obj"
-".\Release\containerList.obj"
-".\Release\Device.obj"
-".\Release\FactoryImpl.obj"
-".\Release\GetDeviceInformationImpl.obj"
-".\Release\GetMediaProfilesImpl.obj"
-".\Release\GetStreamUrlImpl.obj"
-".\Release\OnvifClient.obj"
-".\Release\OnvifClientDlg.obj"
-".\Release\SearchDeviceImpl.obj"
-".\Release\SearchDeviceRetInfo.obj"
-".\Release\soapC1.obj"
-".\Release\soapC10.obj"
-".\Release\soapC2.obj"
-".\Release\soapC3.obj"
-".\Release\soapC4.obj"
-".\Release\soapC5.obj"
-".\Release\soapC6.obj"
-".\Release\soapC7.obj"
-".\Release\soapC8.obj"
-".\Release\soapC9.obj"
-".\Release\soapClient.obj"
-".\Release\SoapUtils.obj"
-".\Release\StdAfx.obj"
-".\Release\stdsoap2.obj"
-".\Release\StringListRetInfo.obj"
-".\Release\StringMapRetInfo.obj"
-".\Release\StringRetInfo.obj"
-".\Release\OnvifClient.res"
+wsock32.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/OnvifClient.pdb" /debug /machine:I386 /out:"Debug/OnvifClient.exe" /pdbtype:sept 
+".\Debug\appTools.obj"
+".\Debug\BaseRetInfo.obj"
+".\Debug\containerList.obj"
+".\Debug\Device.obj"
+".\Debug\FactoryImpl.obj"
+".\Debug\GetDeviceInformationImpl.obj"
+".\Debug\GetMediaProfilesImpl.obj"
+".\Debug\GetStreamUrlImpl.obj"
+".\Debug\OnvifClient.obj"
+".\Debug\OnvifClientDlg.obj"
+".\Debug\SearchDeviceImpl.obj"
+".\Debug\SearchDeviceRetInfo.obj"
+".\Debug\soapC1.obj"
+".\Debug\soapC10.obj"
+".\Debug\soapC11.obj"
+".\Debug\soapC12.obj"
+".\Debug\soapC2.obj"
+".\Debug\soapC3.obj"
+".\Debug\soapC4.obj"
+".\Debug\soapC5.obj"
+".\Debug\soapC6.obj"
+".\Debug\soapC7.obj"
+".\Debug\soapC8.obj"
+".\Debug\soapC9.obj"
+".\Debug\soapClient.obj"
+".\Debug\SoapUtils.obj"
+".\Debug\StdAfx.obj"
+".\Debug\stdsoap2.obj"
+".\Debug\StringListRetInfo.obj"
+".\Debug\StringMapRetInfo.obj"
+".\Debug\StringRetInfo.obj"
+".\Debug\OnvifClient.res"
 ]
-Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP77.tmp"
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP4A.tmp"
 <h3>Output Window</h3>
 Compiling...
-stdsoap2.c
+SoapUtils.cpp
 Linking...
 
 

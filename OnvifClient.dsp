@@ -124,6 +124,15 @@ SOURCE=.\GetMediaProfilesImpl.cpp
 # Begin Source File
 
 SOURCE=.\GetStreamUrlImpl.cpp
+
+!IF  "$(CFG)" == "OnvifClient - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "OnvifClient - Win32 Debug"
+
+# SUBTRACT CPP /Fr
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
@@ -148,58 +157,172 @@ SOURCE=.\SearchDeviceRetInfo.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\soapC1.c
+SOURCE=.\soapC1.cpp
+
+!IF  "$(CFG)" == "OnvifClient - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "OnvifClient - Win32 Debug"
+
 # SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
-SOURCE=.\soapC10.c
+SOURCE=.\soapC10.cpp
+
+!IF  "$(CFG)" == "OnvifClient - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "OnvifClient - Win32 Debug"
+
 # SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
-SOURCE=.\soapC2.c
+SOURCE=.\soapC11.cpp
+
+!IF  "$(CFG)" == "OnvifClient - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "OnvifClient - Win32 Debug"
+
 # SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
-SOURCE=.\soapC3.c
+SOURCE=.\soapC12.cpp
+
+!IF  "$(CFG)" == "OnvifClient - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "OnvifClient - Win32 Debug"
+
 # SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
-SOURCE=.\soapC4.c
+SOURCE=.\soapC2.cpp
+
+!IF  "$(CFG)" == "OnvifClient - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "OnvifClient - Win32 Debug"
+
 # SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
-SOURCE=.\soapC5.c
+SOURCE=.\soapC3.cpp
+
+!IF  "$(CFG)" == "OnvifClient - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "OnvifClient - Win32 Debug"
+
 # SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
-SOURCE=.\soapC6.c
+SOURCE=.\soapC4.cpp
+
+!IF  "$(CFG)" == "OnvifClient - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "OnvifClient - Win32 Debug"
+
 # SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
-SOURCE=.\soapC7.c
+SOURCE=.\soapC5.cpp
+
+!IF  "$(CFG)" == "OnvifClient - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "OnvifClient - Win32 Debug"
+
 # SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
-SOURCE=.\soapC8.c
+SOURCE=.\soapC6.cpp
+
+!IF  "$(CFG)" == "OnvifClient - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "OnvifClient - Win32 Debug"
+
 # SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
-SOURCE=.\soapC9.c
+SOURCE=.\soapC7.cpp
+
+!IF  "$(CFG)" == "OnvifClient - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "OnvifClient - Win32 Debug"
+
 # SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
-SOURCE=.\soapClient.c
+SOURCE=.\soapC8.cpp
+
+!IF  "$(CFG)" == "OnvifClient - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "OnvifClient - Win32 Debug"
+
 # SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\soapC9.cpp
+
+!IF  "$(CFG)" == "OnvifClient - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "OnvifClient - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\soapClient.cpp
+
+!IF  "$(CFG)" == "OnvifClient - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "OnvifClient - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
@@ -212,8 +335,16 @@ SOURCE=.\StdAfx.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\stdsoap2.c
+SOURCE=.\stdsoap2.cpp
+
+!IF  "$(CFG)" == "OnvifClient - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "OnvifClient - Win32 Debug"
+
 # SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
