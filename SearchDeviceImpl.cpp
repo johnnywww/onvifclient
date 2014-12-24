@@ -55,12 +55,12 @@ void CSearchDeviceImpl::detectDevice(struct soap* psoap, wsdd__ProbeType *req_, 
 	}
 }
 
-CBaseRetInfo* CSearchDeviceImpl::getDevices()
+CBaseRetInfo* CSearchDeviceImpl::getDevices(CBaseSoapSecurityInfo* securityInfo)
 {
 	CSearchDeviceRetInfo* result = new CSearchDeviceRetInfo();
 	result->setRetCode(RET_CODE_ERROR_UNKNOWN);
 	wsdd__ProbeType wsdd_req;
-	struct soap* psoap = CSoapUtils::getInstance().newProbeSoap(&wsdd_req, result);
+	struct soap* psoap = CSoapUtils::getInstance().newProbeSoap(&wsdd_req, securityInfo, result);
 	if (NULL == psoap) {
 		return result;
 	}

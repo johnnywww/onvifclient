@@ -102,6 +102,10 @@ SOURCE=.\BaseRetInfo.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\BaseSoapSecurityInfo.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\containerList.cpp
 # SUBTRACT CPP /YX /Yc /Yu
 # End Source File
@@ -166,6 +170,15 @@ SOURCE=.\SearchDeviceImpl.cpp
 # Begin Source File
 
 SOURCE=.\SearchDeviceRetInfo.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=.\SetSoapSecurityDigestImpl.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\sha1.cpp
 # SUBTRACT CPP /YX /Yc /Yu
 # End Source File
 # Begin Source File
@@ -389,6 +402,10 @@ SOURCE=.\BaseRetInfo.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\BaseSoapSecurityInfo.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\containerList.h
 # End Source File
 # Begin Source File
@@ -445,6 +462,10 @@ SOURCE=.\iSearchDevice.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\ISetSoapSecurity.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\OnvifClient.h
 # End Source File
 # Begin Source File
@@ -462,6 +483,14 @@ SOURCE=.\SearchDeviceImpl.h
 # Begin Source File
 
 SOURCE=.\SearchDeviceRetInfo.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\SetSoapSecurityDigestImpl.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\sha1.h
 # End Source File
 # Begin Source File
 

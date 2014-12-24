@@ -1,8 +1,10 @@
+#pragma once
 #include "infdefine.h"
 #include "BaseRetInfo.h"
-#pragma once
+#include "BaseSoapSecurityInfo.h"
+
 DeclareInterface(ISearchDevice)
-	InfMethod(CBaseRetInfo* getDevices());
+	InfMethod(CBaseRetInfo* getDevices(CBaseSoapSecurityInfo* securityInfo));
 EndInterface
 
 

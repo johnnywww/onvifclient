@@ -4,6 +4,7 @@
 #include "GetDeviceInformationImpl.h"
 #include "GetMediaProfilesImpl.h"
 #include "GetStreamUrlImpl.h"
+#include "SetSoapSecurityDigestImpl.h"
 
 
 CFactoryImpl::CFactoryImpl()
@@ -30,4 +31,8 @@ IGetMediaProfiles* CFactoryImpl::createGetMediaProfiles() {
 
 IGetStreamUrl* CFactoryImpl::createGetStreamUrl() {
 	return new CGetStreamUrlImpl();
+}
+
+ISetSoapSecurity* CFactoryImpl::createSetSoapSecurity() {
+	return new CSetSoapSecurityDigestImpl();
 }

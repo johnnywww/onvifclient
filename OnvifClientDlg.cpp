@@ -228,7 +228,9 @@ void COnvifClientDlg::clearDeviceText() {
 void COnvifClientDlg::OnButtonSearch() 
 {
 	std::auto_ptr<ISearchDevice> ap(CFactoryImpl::getInstance().createSearchDevice());
-	CSearchDeviceRetInfo* retInfo1 = static_cast<CSearchDeviceRetInfo*>(ap->getDevices());
+	CBaseSoapSecurityInfo* securityInfo = getSoapSecurityInfo();
+	std::auto_ptr<CBaseSoapSecurityInfo> securityInfoAp(securityInfo);
+	CSearchDeviceRetInfo* retInfo1 = static_cast<CSearchDeviceRetInfo*>(ap->getDevices(securityInfo));
 	std::auto_ptr<CSearchDeviceRetInfo> retInfo(retInfo1);
 	if (notifyErrorRetInfo(retInfo1)) {
 		return;
@@ -267,11 +269,25 @@ std::string COnvifClientDlg::getMediaEndPoint() {
 	return serviceAddress + "/media";
 }
 
+CBaseSoapSecurityInfo* COnvifClientDlg::getSoapSecurityInfo() {
+	CBaseSoapSecurityInfo* result = NULL;
+	std::string user = getWindowTextStr(m_EdtUser);
+	std::string password = getWindowTextStr(m_EdtPassword);
+	if (0 < user.length() && 0 < password.length()) {
+		result = new CBaseSoapSecurityInfo();
+		result->setUserName(user);
+		result->setPassword(password);
+	}
+	return result;
+}
+
 void COnvifClientDlg::OnBtnInfo() 
 {	
 	std::auto_ptr<IGetDeviceInformation> ap(CFactoryImpl::getInstance().createGetDeviceInformation());
+	CBaseSoapSecurityInfo* securityInfo = getSoapSecurityInfo();
+	std::auto_ptr<CBaseSoapSecurityInfo> securityInfoAp(securityInfo);
 	std::string serviceAddress = getServiceAddress();
-	CStringMapRetInfo* retInfo11 = static_cast<CStringMapRetInfo*>(ap->getInfo(serviceAddress));
+	CStringMapRetInfo* retInfo11 = static_cast<CStringMapRetInfo*>(ap->getInfo(serviceAddress, securityInfo));
 	std::auto_ptr<CStringMapRetInfo>retInfo(retInfo11);
 	if (notifyErrorRetInfo(retInfo11)) {
 		return;
@@ -281,7 +297,7 @@ void COnvifClientDlg::OnBtnInfo()
 	m_EdtModel.SetWindowText(getCString(retInfo->getValue("Model")));
 	
 	std::auto_ptr<IGetMediaProfiles> ap1(CFactoryImpl::getInstance().createGetMediaProfiles());
-	CStringListRetInfo* retInfo12 = static_cast<CStringListRetInfo*>(ap1->getInfo(getMediaEndPoint()));
+	CStringListRetInfo* retInfo12 = static_cast<CStringListRetInfo*>(ap1->getInfo(getMediaEndPoint(), securityInfo));
 	std::auto_ptr<CStringListRetInfo> retInfo1(retInfo12);
 	if (notifyErrorRetInfo(retInfo12)) {
 		return;
@@ -317,7 +333,9 @@ void COnvifClientDlg::OnBtnInfomediauri()
 	std::string serviceAddress = getMediaEndPoint();
 	std::string profile = getWindowTextStr(m_ComboMediaProfiles);
 	std::auto_ptr<IGetStreamUrl> ap(CFactoryImpl::getInstance().createGetStreamUrl());
-	CStringRetInfo* retInfo11 = static_cast<CStringRetInfo*>(ap->getInfo(serviceAddress, profile));	
+	CBaseSoapSecurityInfo* securityInfo = getSoapSecurityInfo();
+	std::auto_ptr<CBaseSoapSecurityInfo> securityInfoAp(securityInfo);
+	CStringRetInfo* retInfo11 = static_cast<CStringRetInfo*>(ap->getInfo(serviceAddress, profile, securityInfo));	
 	std::auto_ptr<CStringRetInfo>retInfo(retInfo11);
 	if (notifyErrorRetInfo(retInfo11)) {
 		return;

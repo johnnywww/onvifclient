@@ -30,7 +30,7 @@ CGetStreamUrlImpl::~CGetStreamUrlImpl()
 
 }
 
-CBaseRetInfo* CGetStreamUrlImpl::getInfo(std::string serviceAddress, std::string mediaProfile) 
+CBaseRetInfo* CGetStreamUrlImpl::getInfo(std::string serviceAddress, std::string mediaProfile, CBaseSoapSecurityInfo* securityInfo) 
 {
 	CStringRetInfo* result = new CStringRetInfo();
 	result->setRetCode(RET_CODE_ERROR_NOT_SUPPORT);
@@ -42,7 +42,7 @@ CBaseRetInfo* CGetStreamUrlImpl::getInfo(std::string serviceAddress, std::string
 		result->setMessage("no media profile");
 		return result;
 	}
-	struct soap* psoap = CSoapUtils::getInstance().newSoapRetInfo(result);
+	struct soap* psoap = CSoapUtils::getInstance().newSoapRetInfo(securityInfo, result);
 	if (NULL == psoap) {
 		return result;
 	}

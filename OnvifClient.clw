@@ -5,38 +5,36 @@ Version=1
 LastClass=COnvifClientDlg
 LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
-NewFileInclude2=#include "OnvifClient.h"
+NewFileInclude2=#include "onvifclient.h"
+LastPage=0
 
 ClassCount=3
 Class1=COnvifClientApp
-Class2=COnvifClientDlg
-Class3=CAboutDlg
+Class2=CAboutDlg
+Class3=COnvifClientDlg
 
-ResourceCount=3
+ResourceCount=2
 Resource1=IDD_ABOUTBOX
-Resource2=IDR_MAINFRAME
-Resource3=IDD_ONVIFCLIENT_DIALOG
+Resource2=IDD_ONVIFCLIENT_DIALOG
 
 [CLS:COnvifClientApp]
 Type=0
+BaseClass=CWinApp
 HeaderFile=OnvifClient.h
 ImplementationFile=OnvifClient.cpp
-Filter=N
-
-[CLS:COnvifClientDlg]
-Type=0
-HeaderFile=OnvifClientDlg.h
-ImplementationFile=OnvifClientDlg.cpp
-Filter=D
-BaseClass=CDialog
-VirtualFilter=dWC
-LastObject=COnvifClientDlg
 
 [CLS:CAboutDlg]
 Type=0
+BaseClass=CDialog
+HeaderFile=OnvifClientDlg.cpp
+ImplementationFile=OnvifClientDlg.cpp
+
+[CLS:COnvifClientDlg]
+Type=0
+BaseClass=CDialog
 HeaderFile=OnvifClientDlg.h
 ImplementationFile=OnvifClientDlg.cpp
-Filter=D
+LastObject=COnvifClientDlg
 
 [DLG:IDD_ABOUTBOX]
 Type=1
@@ -72,7 +70,7 @@ Control18=IDC_STATIC,static,1342308352
 Control19=IDC_EDIT_MODEL,edit,1350631552
 Control20=IDC_STATIC,static,1342308352
 Control21=IDC_BTN_INFO,button,1342242816
-Control22=IDC_COMBO_MEDIA_PROFILES,combobox,1344340226
+Control22=IDC_COMBO_MEDIA_PROFILES,combobox,1344340227
 Control23=IDC_STATIC,static,1342308352
 Control24=IDC_BTN_INFOMEDIAURI,button,1342242816
 Control25=IDC_EDIT_MEDIAURL,edit,1350631552

@@ -17,7 +17,7 @@ public:
 	CGetStreamUrlImpl();
 	virtual ~CGetStreamUrlImpl();
 public:
-	ImplInfMethod(CBaseRetInfo* getInfo(std::string serviceAddress, std::string mediaProfile));
+	ImplInfMethod(CBaseRetInfo* getInfo(std::string serviceAddress, std::string mediaProfile, CBaseSoapSecurityInfo* securityInfo));
 
 };
 

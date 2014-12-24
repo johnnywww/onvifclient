@@ -13,5 +13,6 @@ public:
 	ImplInfMethod(IGetDeviceInformation* createGetDeviceInformation());
 	ImplInfMethod(IGetMediaProfiles* createGetMediaProfiles());
 	ImplInfMethod(IGetStreamUrl* createGetStreamUrl());
+	ImplInfMethod(ISetSoapSecurity* createSetSoapSecurity());
 };
 

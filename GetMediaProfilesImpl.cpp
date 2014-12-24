@@ -30,13 +30,13 @@ CGetMediaProfilesImpl::~CGetMediaProfilesImpl()
 
 }
 
-CBaseRetInfo* CGetMediaProfilesImpl::getInfo(std::string serviceAddress) {
+CBaseRetInfo* CGetMediaProfilesImpl::getInfo(std::string serviceAddress, CBaseSoapSecurityInfo* securityInfo) {
 	CStringListRetInfo* result = new CStringListRetInfo();
 	result->setRetCode(RET_CODE_ERROR_NOT_SUPPORT);
 	if (CAppTools::getInstance().getInvalidServiceAddressRetInfo(serviceAddress, result)) {
 		return result;
 	}
-	struct soap* psoap = CSoapUtils::getInstance().newSoapRetInfo(result);
+	struct soap* psoap = CSoapUtils::getInstance().newSoapRetInfo(securityInfo, result);
 	if (NULL == psoap) {
 		return result;
 	}
@@ -50,7 +50,7 @@ CBaseRetInfo* CGetMediaProfilesImpl::getInfo(std::string serviceAddress) {
 	if (trt__GetProfilesResponse.__sizeProfiles > 0)  {
 		for(int i = 0; i < trt__GetProfilesResponse.__sizeProfiles; i++) {
 			tt__Profile* profile = trt__GetProfilesResponse.Profiles[i];
-			if ((NULL != profile) && (NULL != profile->Name)) {
+			if ((NULL != profile) && (NULL != profile->token)) {
 				result->addInfo(profile->token);
 			}
 		}

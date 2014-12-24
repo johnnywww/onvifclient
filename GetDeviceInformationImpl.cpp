@@ -14,13 +14,13 @@ CGetDeviceInformationImpl::~CGetDeviceInformationImpl()
 {
 }
 
-CBaseRetInfo* CGetDeviceInformationImpl::getInfo(std::string serviceAddress) {
+CBaseRetInfo* CGetDeviceInformationImpl::getInfo(std::string serviceAddress, CBaseSoapSecurityInfo* securityInfo) {
 	CStringMapRetInfo* result = new CStringMapRetInfo();
 	result->setRetCode(RET_CODE_ERROR_NOT_SUPPORT);
 	if (CAppTools::getInstance().getInvalidServiceAddressRetInfo(serviceAddress, result)) {
 		return result;
 	}
-	struct soap* psoap = CSoapUtils::getInstance().newSoapRetInfo(result);
+	struct soap* psoap = CSoapUtils::getInstance().newSoapRetInfo(securityInfo, result);
 	if (NULL == psoap) {
 		return result;
 	}

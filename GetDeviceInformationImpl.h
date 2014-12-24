@@ -6,6 +6,6 @@ public:
 	CGetDeviceInformationImpl();
 	~CGetDeviceInformationImpl();
 public:
-	ImplInfMethod(CBaseRetInfo* getInfo(std::string serviceAddress));
+	ImplInfMethod(CBaseRetInfo* getInfo(std::string serviceAddress, CBaseSoapSecurityInfo* securityInfo));
 };
 

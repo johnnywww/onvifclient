@@ -1,5 +1,9 @@
 #include "stdafx.h"
 #include "SoapUtils.h"
+#include <memory>
+#include "appTools.h"
+#include "iSetSoapSecurity.h"
+#include "FactoryImpl.h"
 
 #define SOAP_RECV_TIMEOUT 5
 
@@ -12,7 +16,7 @@ CSoapUtils::~CSoapUtils()
 {
 }
 
-struct soap* CSoapUtils::newSoap()
+struct soap* CSoapUtils::newSoap(CBaseSoapSecurityInfo* securityInfo)
 {
 	struct soap* psoap = NULL;
 	psoap = soap_new();
@@ -23,31 +27,45 @@ struct soap* CSoapUtils::newSoap()
 	}
 	soap_set_namespaces(psoap, namespaces);
 	psoap->recv_timeout = SOAP_RECV_TIMEOUT;
+	psoap->send_timeout    = 10;
+    psoap->connect_timeout = 10;
+	struct SOAP_ENV__Header* header = static_cast<struct SOAP_ENV__Header*>(my_soap_malloc(psoap, sizeof(struct SOAP_ENV__Header)));
+	
+	soap_default_SOAP_ENV__Header(psoap, header);
+	
+	char guid_string[100] = { 0 };
+	GUID guid;
+	
+	if (CoCreateGuid(&guid))
+	{
+		deleteSoap(psoap);
+		printf("create guid error\r\n");
+		return NULL;
+	}
+	
+	header->wsa__MessageID = guid_string;
+	psoap->header = header;
+	if ((NULL != securityInfo) && (securityInfo->getUserName().length() > 0)){
+		std::auto_ptr<ISetSoapSecurity> ap(CFactoryImpl::getInstance().createSetSoapSecurity());
+		if (!CAppTools::getInstance().isRetSuccess(ap->setSecurity(psoap, securityInfo))) {
+			deleteSoap(psoap);
+			printf("set security error\r\n");
+			return NULL;
+		}
+	}
 	return psoap;
 }
 
-struct soap* CSoapUtils::newProbeSoap(wsdd__ProbeType *req_, CBaseRetInfo* retInfo)
+
+struct soap* CSoapUtils::newProbeSoap(wsdd__ProbeType *req_, CBaseSoapSecurityInfo* securityInfo, CBaseRetInfo* retInfo)
 {
-	struct  soap* psoap = newSoapRetInfo(retInfo);
+	struct  soap* psoap = newSoapRetInfo(securityInfo, retInfo);
 	if (NULL == psoap)
 		return NULL;
-	struct SOAP_ENV__Header* header = static_cast<struct SOAP_ENV__Header*>(my_soap_malloc(psoap, sizeof(struct SOAP_ENV__Header)));
-
-	soap_default_SOAP_ENV__Header(psoap, header);
-
-	char guid_string[100] = { 0 };
-	GUID guid;
-
-	if (CoCreateGuid(&guid))
-	{
-		setRetInfoAndDeleteSoap(RET_CODE_ERROR_INVALID_VALUE, "create guid error", psoap, retInfo);
-		return NULL;
-	}
-
-	header->wsa__MessageID = guid_string;
+    struct SOAP_ENV__Header* header = psoap->header;
 	header->wsa__To = "urn:schemas-xmlsoap-org:ws:2005:04:discovery";
 	header->wsa__Action = "http://schemas.xmlsoap.org/ws/2005/04/discovery/Probe";
-	psoap->header = header;
+
 	wsdd__ScopesType* sScope_ = static_cast<wsdd__ScopesType*>(my_soap_malloc(psoap, sizeof(wsdd__ScopesType)));
 	soap_default_wsdd__ScopesType(psoap, sScope_);
 	sScope_->__item = "";
@@ -92,9 +110,9 @@ void CSoapUtils::setSoapErrorInfoAndDeleteSoap(const int retCode, struct soap* p
 	deleteSoap(psoap);
 }
 
-struct soap* CSoapUtils::newSoapRetInfo(CBaseRetInfo* retInfo)
+struct soap* CSoapUtils::newSoapRetInfo(CBaseSoapSecurityInfo* securityInfo, CBaseRetInfo* retInfo)
 {
-	struct soap* result = newSoap();
+	struct soap* result = newSoap(securityInfo);
 	if (NULL == result) {
 		retInfo->setRetCode(RET_CODE_ERROR_NULL_OBJECT);
 		retInfo->setMessage("new soap error");

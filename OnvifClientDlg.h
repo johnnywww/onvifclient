@@ -10,6 +10,7 @@
 
 #include "Device.h"
 #include "BaseRetInfo.h"
+#include "BaseSoapSecurityInfo.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // COnvifClientDlg dialog
@@ -78,6 +79,7 @@ private:
 	BOOL notifyErrorRetInfo(CBaseRetInfo* retInfo);
 	std::string getWindowTextStr(CWnd& wnd);
 	std::string getMediaEndPoint();
+	CBaseSoapSecurityInfo* getSoapSecurityInfo();
 };
 
 //{{AFX_INSERT_LOCATION}}

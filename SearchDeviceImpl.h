@@ -7,7 +7,7 @@ class CSearchDeviceImpl :
 public:
 	CSearchDeviceImpl();
 	~CSearchDeviceImpl();
-	ImplInfMethod(CBaseRetInfo*  getDevices());
+	ImplInfMethod(CBaseRetInfo*  getDevices(CBaseSoapSecurityInfo* securityInfo));
 private:
 	void detectDevice(struct soap* soap, wsdd__ProbeType *req_, CBaseRetInfo* retInfo);
 };
