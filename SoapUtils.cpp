@@ -43,7 +43,8 @@ struct soap* CSoapUtils::newSoap(CBaseSoapSecurityInfo* securityInfo)
 		return NULL;
 	}
 	
-	header->wsa__MessageID = guid_string;
+	header->wsa__MessageID = static_cast<char*>(my_soap_malloc(psoap, 100));
+	strcpy(header->wsa__MessageID, guid_string);
 	psoap->header = header;
 	if ((NULL != securityInfo) && (securityInfo->getUserName().length() > 0)){
 		std::auto_ptr<ISetSoapSecurity> ap(CFactoryImpl::getInstance().createSetSoapSecurity());
@@ -131,4 +132,22 @@ void CSoapUtils::setSoapSuccessInfoAndDeleteSoap(struct soap* psoap, CBaseRetInf
 {
 	retInfo->setRetCode(RET_CODE_SUCCESS);
 	deleteSoap(psoap);
+}
+
+void CSoapUtils::calc_nonce(char* nonce, int len)
+{
+	int i;  
+    time_t r = time(NULL);  
+    memcpy(nonce, &r, 4);  
+    for (i = 4; i < len; i += 4)  
+    {   
+        r = soap_random;  
+        memcpy(nonce + i, &r, 4);  
+    }  
+}
+
+char* CSoapUtils::createSoapDateTimeStr(struct soap* psoap)
+{
+	time_t now = time(NULL);  
+    return soap_strdup(psoap, soap_dateTime2s(psoap, now));  
 }

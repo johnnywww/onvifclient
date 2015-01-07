@@ -14,5 +14,8 @@ public:
 	ImplInfMethod(IGetMediaProfiles* createGetMediaProfiles());
 	ImplInfMethod(IGetStreamUrl* createGetStreamUrl());
 	ImplInfMethod(ISetSoapSecurity* createSetSoapSecurity());
+	ImplInfMethod(ICalculateDigest* createCalculateDigest());
+	ImplInfMethod(IEncodeBase64* createEncodeBase64());
+	ImplInfMethod(IDecodeBase64* createDecodeBase64());
 };
 

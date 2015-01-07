@@ -106,6 +106,7 @@ BEGIN_MESSAGE_MAP(COnvifClientDlg, CDialog)
 	ON_BN_CLICKED(IDC_BTN_INFO, OnBtnInfo)
 	ON_LBN_DBLCLK(IDC_LIST_DEVICE, OnDblclkListDevice)
 	ON_BN_CLICKED(IDC_BTN_INFOMEDIAURI, OnBtnInfomediauri)
+	ON_BN_CLICKED(IDC_BTN_PROBE, OnBtnProbe)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -374,4 +375,10 @@ BOOL COnvifClientDlg::DestroyWindow()
 	// TODO: Add your specialized code here and/or call the base class
 	clearListBoxDevices();
 	return CDialog::DestroyWindow();
+}
+
+void COnvifClientDlg::OnBtnProbe() 
+{
+	// TODO: Add your control notification handler code here
+	
 }

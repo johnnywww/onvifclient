@@ -40,6 +40,7 @@ RSC=rc.exe
 # PROP Use_Debug_Libraries 0
 # PROP Output_Dir "Release"
 # PROP Intermediate_Dir "Release"
+# PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
 # ADD CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Yu"stdafx.h" /FD /c
@@ -106,6 +107,14 @@ SOURCE=.\BaseSoapSecurityInfo.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\CalculateDigestSha1ContextImpl.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\CalculateDigestSha1Impl.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\containerList.cpp
 # SUBTRACT CPP /YX /Yc /Yu
 # End Source File
@@ -125,6 +134,10 @@ SOURCE=.\duration.cpp
 
 !ENDIF 
 
+# End Source File
+# Begin Source File
+
+SOURCE=.\EncodeBase64SoapImpl.cpp
 # End Source File
 # Begin Source File
 
@@ -174,11 +187,20 @@ SOURCE=.\SearchDeviceRetInfo.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\SetSoapSecurityDigest2Impl.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\SetSoapSecurityDigestImpl.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\sha1.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=.\sha2.cpp
 # SUBTRACT CPP /YX /Yc /Yu
 # End Source File
 # Begin Source File
@@ -406,6 +428,14 @@ SOURCE=.\BaseSoapSecurityInfo.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\CalculateDigestSha1ContextImpl.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\CalculateDigestSha1Impl.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\containerList.h
 # End Source File
 # Begin Source File
@@ -415,6 +445,10 @@ SOURCE=.\Device.h
 # Begin Source File
 
 SOURCE=.\duration.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\EncodeBase64SoapImpl.h
 # End Source File
 # Begin Source File
 
@@ -431,6 +465,14 @@ SOURCE=.\GetMediaProfilesImpl.h
 # Begin Source File
 
 SOURCE=.\GetStreamUrlImpl.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\iCalculateDigest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\iEncodeBase64.h
 # End Source File
 # Begin Source File
 
@@ -486,11 +528,19 @@ SOURCE=.\SearchDeviceRetInfo.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\SetSoapSecurityDigest2Impl.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\SetSoapSecurityDigestImpl.h
 # End Source File
 # Begin Source File
 
 SOURCE=.\sha1.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\sha2.h
 # End Source File
 # Begin Source File
 

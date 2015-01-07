@@ -21,5 +21,7 @@ public:
 	void setRetInfoAndDeleteSoap(const int retCode, std::string msg, struct soap* psoap, CBaseRetInfo* retInfo);
 	void setSoapErrorInfoAndDeleteSoap(const int retCode, struct soap* psoap, CBaseRetInfo* retInfo);
 	void setSoapSuccessInfoAndDeleteSoap(struct soap* psoap, CBaseRetInfo* retInfo);
+	void calc_nonce(char* nonce, int len);
+	char* createSoapDateTimeStr(struct soap* psoap);
 };
 

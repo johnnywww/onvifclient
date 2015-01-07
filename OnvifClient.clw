@@ -35,6 +35,8 @@ BaseClass=CDialog
 HeaderFile=OnvifClientDlg.h
 ImplementationFile=OnvifClientDlg.cpp
 LastObject=COnvifClientDlg
+Filter=D
+VirtualFilter=dWC
 
 [DLG:IDD_ABOUTBOX]
 Type=1
