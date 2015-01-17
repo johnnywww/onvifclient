@@ -98,7 +98,7 @@ int CSetSoapSecurityDigest2Impl::soap_wsse_add_UsernameTokenDigest(struct soap *
 	if (!CAppTools::getInstance().isRetSuccess(result))
 		return result;
 	std::auto_ptr<IEncodeBase64> apEncodeBase64(CFactoryImpl::getInstance().createEncodeBase64());
-	result = apEncodeBase64->encode(HA, psoap, HABase64,SOAP_SMD_SHA1_SIZE);
+	result = apEncodeBase64->encode(HA, strlen(HA), psoap, HABase64);
 	if (!CAppTools::getInstance().isRetSuccess(result))
 		return result;
     // soap_s2base64(psoap, (unsigned char*)HA, HABase64, SOAP_SMD_SHA1_SIZE);  

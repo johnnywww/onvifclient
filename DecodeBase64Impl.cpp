@@ -28,7 +28,7 @@ CDecodeBase64Impl::~CDecodeBase64Impl()
 
 int CDecodeBase64Impl::decode(const char* src, const void* param, char* value, int len)
 {
-	   int len1 = 0;
+	   int calcLen = 0;
 	   register unsigned char digit1, digit2, digit3, digit4;
 	   
 	   if (src[0] == '+' && src[1] == ' ')
@@ -51,15 +51,15 @@ int CDecodeBase64Impl::decode(const char* src, const void* param, char* value, i
 			   return(-1);
 		   src += 4;
 		   *value++ = (DECODE64(digit1) << 2) | (DECODE64(digit2) >> 4);
-		   ++len1;
+		   ++calcLen;
 		   if (digit3 != '=')
 		   {
 			   *value++ = ((DECODE64(digit2) << 4) & 0xf0) | (DECODE64(digit3) >> 2);
-			   ++len1;
+			   ++calcLen;
 			   if (digit4 != '=')
 			   {
 				   *value++ = ((DECODE64(digit3) << 6) & 0xc0) | DECODE64(digit4);
-				   ++len1;
+				   ++calcLen;
 			   }
 		   }
 	   } while (*src && *src != '\r' && digit4 != '=');

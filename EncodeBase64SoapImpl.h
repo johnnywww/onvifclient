@@ -16,7 +16,7 @@ public:
 	CEncodeBase64SoapImpl();
 	virtual ~CEncodeBase64SoapImpl();
 public:
-	ImplInfMethod(int encode(const char* src, const void* param, char* value, int len));
+	ImplInfMethod(int encode(const char* src, const int srcLen,  const void* param, char* value));
 private:
 };
 

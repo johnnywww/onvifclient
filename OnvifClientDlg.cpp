@@ -107,6 +107,7 @@ BEGIN_MESSAGE_MAP(COnvifClientDlg, CDialog)
 	ON_LBN_DBLCLK(IDC_LIST_DEVICE, OnDblclkListDevice)
 	ON_BN_CLICKED(IDC_BTN_INFOMEDIAURI, OnBtnInfomediauri)
 	ON_BN_CLICKED(IDC_BTN_PROBE, OnBtnProbe)
+	ON_BN_CLICKED(IDC_BUTTON1, OnButton1)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -378,6 +379,12 @@ BOOL COnvifClientDlg::DestroyWindow()
 }
 
 void COnvifClientDlg::OnBtnProbe() 
+{
+	// TODO: Add your control notification handler code here
+	
+}
+
+void COnvifClientDlg::OnButton1() 
 {
 	// TODO: Add your control notification handler code here
 	

@@ -9,7 +9,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 #include "iDecodeBase64.h"
-class CDecodeBase64Impl  
+
+class CDecodeBase64Impl: implements IDecodeBase64  
 {
 public:
 	CDecodeBase64Impl();

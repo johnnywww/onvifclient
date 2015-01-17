@@ -9,6 +9,8 @@
 #include "CalculateDigestSha1ContextImpl.h"
 #include "EncodeBase64SoapImpl.h"
 #include "DecodeBase64SoapImpl.h"
+#include "EncodeBase64Impl.h"
+#include "DecodeBase64Impl.h"
 
 CFactoryImpl::CFactoryImpl()
 {

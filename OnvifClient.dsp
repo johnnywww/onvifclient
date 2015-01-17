@@ -120,6 +120,10 @@ SOURCE=.\containerList.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\DecodeBase64SoapImpl.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Device.cpp
 # End Source File
 # Begin Source File
@@ -440,6 +444,10 @@ SOURCE=.\containerList.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\DecodeBase64SoapImpl.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\Device.h
 # End Source File
 # Begin Source File
@@ -469,6 +477,10 @@ SOURCE=.\GetStreamUrlImpl.h
 # Begin Source File
 
 SOURCE=.\iCalculateDigest.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\iDecodeBase64.h
 # End Source File
 # Begin Source File
 
@@ -587,6 +599,10 @@ SOURCE=.\res\OnvifClient.ico
 SOURCE=.\res\OnvifClient.rc2
 # End Source File
 # End Group
+# Begin Source File
+
+SOURCE=.\iDecodeBase64.asp
+# End Source File
 # Begin Source File
 
 SOURCE=.\OnvifClient.clw

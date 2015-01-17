@@ -26,7 +26,7 @@ CEncodeBase64Impl::~CEncodeBase64Impl()
 
 }
 
-int CEncodeBase64Impl::encode(const char* src, const void* param, char* value, int len)
+int CEncodeBase64Impl::encode(const char* src, const void* param, char* value)
 {
 	   int inlen = (int)strlen((const char*)src);
 	   for (; inlen >= 3; inlen -= 3)

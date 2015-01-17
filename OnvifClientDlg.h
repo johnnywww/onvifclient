@@ -61,6 +61,7 @@ protected:
 	afx_msg void OnDblclkListDevice();
 	afx_msg void OnBtnInfomediauri();
 	afx_msg void OnBtnProbe();
+	afx_msg void OnButton1();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

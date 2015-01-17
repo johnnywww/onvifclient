@@ -16,7 +16,7 @@ public:
 	CEncodeBase64Impl();
 	virtual ~CEncodeBase64Impl();
 public:
-	ImplInfMethod(int encode(const char* src, const void* param, char* value, int len));
+	ImplInfMethod(int encode(const char* src, const void* param, char* value));
 private:
 };
 
