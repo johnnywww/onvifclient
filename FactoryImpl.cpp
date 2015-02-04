@@ -11,7 +11,7 @@
 #include "DecodeBase64SoapImpl.h"
 #include "EncodeBase64Impl.h"
 #include "DecodeBase64Impl.h"
-
+#include "GetServicesImpl.h"
 CFactoryImpl::CFactoryImpl()
 {
 }
@@ -54,4 +54,9 @@ IEncodeBase64* CFactoryImpl::createEncodeBase64() {
 IDecodeBase64* CFactoryImpl::createDecodeBase64()
 {
 	return new CDecodeBase64SoapImpl();
+}
+
+IGetServices* CFactoryImpl::createGetServices()
+{
+	return new CGetServicesImpl();
 }

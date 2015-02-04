@@ -34,7 +34,7 @@ void CSearchDeviceImpl::detectDevice(struct soap* psoap, wsdd__ProbeType *req_, 
 				CDevice* device = new CDevice();
 				device->setEPAddress(probeMatch->wsa__EndpointReference.Address);
 				device->setType(probeMatch->Types);
-				device->setServiceAddress(probeMatch->XAddrs);
+				device->setServiceAddress(CAppTools::getInstance().split(probeMatch->XAddrs, " "));
 				device->setMetaVersion(CAppTools::getInstance().convertToStr(probeMatch->MetadataVersion));
 				if (NULL != probeMatch->Scopes && NULL != probeMatch->Scopes->__item)
 					device->setScopeTypes(probeMatch->Scopes->__item);

@@ -72,7 +72,6 @@ COnvifClientDlg::COnvifClientDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(COnvifClientDlg::IDD, pParent)
 {
 	//{{AFX_DATA_INIT(COnvifClientDlg)
-		// NOTE: the ClassWizard will add member initialization here
 	//}}AFX_DATA_INIT
 	// Note that LoadIcon does not require a subsequent DestroyIcon in Win32
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
@@ -82,6 +81,8 @@ void COnvifClientDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(COnvifClientDlg)
+	DDX_Control(pDX, IDC_EDIT_EPADDRESS, m_EdtEPAddress);
+	DDX_Control(pDX, IDC_COMBO_SERVICE_ADDRESS, m_ComboServiceAddress);
 	DDX_Control(pDX, IDC_COMBO_MEDIA_PROFILES, m_ComboMediaProfiles);
 	DDX_Control(pDX, IDC_EDIT_MEDIAURL, m_EdtMediaUrl);
 	DDX_Control(pDX, IDC_EDIT_MODEL, m_EdtModel);
@@ -89,9 +90,7 @@ void COnvifClientDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT_METAVERSION, m_EdtMetaVersion);
 	DDX_Control(pDX, IDC_EDIT_USER, m_EdtUser);
 	DDX_Control(pDX, IDC_EDIT_TYPE, m_EdtType);
-	DDX_Control(pDX, IDC_EDIT_SERVICEADDRESS, m_EdtServiceAddress);
 	DDX_Control(pDX, IDC_EDIT_PASSWORD, m_EdtPassword);
-	DDX_Control(pDX, IDC_EDIT_EPADDRESS, m_EdtEPAddress);
 	DDX_Control(pDX, IDC_LIST_SCOPES, m_LBoxScopes);
 	DDX_Control(pDX, IDC_LIST_DEVICE, m_LBoxDevices);
 	//}}AFX_DATA_MAP
@@ -107,7 +106,6 @@ BEGIN_MESSAGE_MAP(COnvifClientDlg, CDialog)
 	ON_LBN_DBLCLK(IDC_LIST_DEVICE, OnDblclkListDevice)
 	ON_BN_CLICKED(IDC_BTN_INFOMEDIAURI, OnBtnInfomediauri)
 	ON_BN_CLICKED(IDC_BTN_PROBE, OnBtnProbe)
-	ON_BN_CLICKED(IDC_BUTTON1, OnButton1)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -116,7 +114,7 @@ END_MESSAGE_MAP()
 
 BOOL COnvifClientDlg::OnInitDialog()
 {
-	CDialog::OnInitDialog();
+ 	CDialog::OnInitDialog();
 
 	// Add "About..." menu item to system menu.
 
@@ -218,7 +216,7 @@ void COnvifClientDlg::clearEdtText(CWnd& edtWnd) {
 void COnvifClientDlg::clearDeviceText() {
 	clearEdtText(m_EdtEPAddress);
 	clearEdtText(m_EdtPassword);
-	clearEdtText(m_EdtServiceAddress);
+	m_ComboServiceAddress.ResetContent();
 	clearEdtText(m_EdtType);
 	clearEdtText(m_EdtUser);
 	clearEdtText(m_EdtMetaVersion);
@@ -242,7 +240,7 @@ void COnvifClientDlg::OnButtonSearch()
 	for (int i = 0; i < retInfo->getDevices()->count(); i++) {
 		CDevice* device = new CDevice();
 		*device = *(retInfo->getDevices()->get(i));			
-		int index = m_LBoxDevices.AddString(getCString(device->getServiceAddress()));
+		int index = m_LBoxDevices.AddString(getCString(device->getFirstServiceAddress()));
 		m_LBoxDevices.SetItemDataPtr(index, device);
 	}
 }
@@ -267,8 +265,16 @@ BOOL COnvifClientDlg::notifyErrorRetInfo(CBaseRetInfo* retInfo) {
 }
 
 std::string COnvifClientDlg::getMediaEndPoint() {
+	std::string result;
+	std::auto_ptr<IGetServices> ap(CFactoryImpl::getInstance().createGetServices());
+	CBaseSoapSecurityInfo* securityInfo = getSoapSecurityInfo();
+	std::auto_ptr<CBaseSoapSecurityInfo> securityInfoAp(securityInfo);
 	std::string serviceAddress = getServiceAddress();
-	return serviceAddress + "/media";
+	CStringMapRetInfo* retInfo11 = static_cast<CStringMapRetInfo*>(ap->getInfo(serviceAddress, securityInfo));
+	std::auto_ptr<CStringMapRetInfo>retInfo(retInfo11);
+	if (!notifyErrorRetInfo(retInfo11)) 		
+		result = retInfo11->getInfos().find("media")->second;
+	return result;
 }
 
 CBaseSoapSecurityInfo* COnvifClientDlg::getSoapSecurityInfo() {
@@ -319,8 +325,14 @@ void COnvifClientDlg::OnDblclkListDevice()
 	if (index > -1) {
 		clearDeviceText();
 		CDevice* device = static_cast<CDevice*>(m_LBoxDevices.GetItemDataPtr(index));
-		m_EdtEPAddress.SetWindowText(getCString(device->getEPAddress()));
-		m_EdtServiceAddress.SetWindowText(getCString(device->getServiceAddress()));
+ 		m_EdtEPAddress.SetWindowText(getCString(device->getEPAddress()));
+		std::vector<std::string> v1 = device->getServiceAddress();
+ 		for(std::vector<std::string>::iterator iter1 = v1.begin(); iter1 != v1.end(); iter1++) {
+			m_ComboServiceAddress.AddString(getCString(*iter1));
+		}
+		if (m_ComboServiceAddress.GetCount() > 0) {
+			m_ComboServiceAddress.SetCurSel(0);
+		}		
 		m_EdtType.SetWindowText(getCString(device->getType()));
 		std::vector<std::string> scopes = device->getScopes();
 		for (std::vector<std::string>::iterator iter = scopes.begin(); iter != scopes.end(); iter++) {
@@ -353,6 +365,11 @@ void COnvifClientDlg::clearDeviceInformation()
 	
 }
 
+void COnvifClientDlg::clearServiceAddress()
+{
+	m_ComboServiceAddress.ResetContent();
+}
+
 void COnvifClientDlg::clearMediaInfo()
 {
 	m_ComboMediaProfiles.ResetContent();
@@ -361,7 +378,7 @@ void COnvifClientDlg::clearMediaInfo()
 
 std::string COnvifClientDlg::getServiceAddress()
 {
-	return getWindowTextStr(m_EdtServiceAddress);
+	return getWindowTextStr(m_ComboServiceAddress);
 }
 
 std::string COnvifClientDlg::getWindowTextStr(CWnd& wnd)
@@ -384,8 +401,3 @@ void COnvifClientDlg::OnBtnProbe()
 	
 }
 
-void COnvifClientDlg::OnButton1() 
-{
-	// TODO: Add your control notification handler code here
-	
-}

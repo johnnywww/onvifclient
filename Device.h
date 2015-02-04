@@ -9,8 +9,9 @@ public:
 public:
 	std::string getEPAddress() const;
 	void setEPAddress(std::string value);
-	std::string getServiceAddress() const;
-	void setServiceAddress(std::string value);
+	std::vector<std::string> getServiceAddress() const;
+	std::string getFirstServiceAddress();
+	void setServiceAddress(std::vector<std::string>& addresses);
 	std::string getType() const;
 	void setType(std::string value);
 	std::string getMetaVersion() const;
@@ -24,7 +25,7 @@ public:
 	void setPassword(std::string value);
 private:
 	std::string m_EPAddress;
-	std::string m_ServiceAddress;
+	std::vector<std::string> m_ServiceAddress;
 	std::string m_Type;
 	std::string m_MetaVersion;
 	std::string m_ScopeTypes;

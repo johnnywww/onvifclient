@@ -10,6 +10,7 @@
 #include "SoapUtils.h"
 #include "appTools.h"
 
+#include <vector>
 #ifdef _DEBUG
 #undef THIS_FILE
 static char THIS_FILE[]=__FILE__;

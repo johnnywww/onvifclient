@@ -21,14 +21,17 @@ void CDevice::setEPAddress(std::string value)
 	m_EPAddress = value;
 }
 
-std::string CDevice::getServiceAddress() const
+std::vector<std::string> CDevice::getServiceAddress() const
 {
 	return m_ServiceAddress;
 }
 
-void CDevice::setServiceAddress(std::string value)
+void CDevice::setServiceAddress(std::vector<std::string>& value)
 {
-	m_ServiceAddress = value;
+	m_ServiceAddress.clear();
+	for(std::vector<std::string>::iterator iter = value.begin(); iter != value.end(); iter++){
+		m_ServiceAddress.push_back(*iter);
+	}
 }
 
 std::string CDevice::getType() const
@@ -84,4 +87,14 @@ std::string CDevice::getPassword() const
 void CDevice::setPassword(std::string value)
 {
 	m_Password = value;
+}
+
+std::string CDevice::getFirstServiceAddress()
+{
+	std::string result;
+	std::vector<std::string>::iterator iter = m_ServiceAddress.begin();
+	if (iter != m_ServiceAddress.end()) {
+		result = *iter;
+	}
+	return result;
 }

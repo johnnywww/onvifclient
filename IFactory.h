@@ -7,6 +7,7 @@
 #include "iCalculateDigest.h"
 #include "iEncodeBase64.h"
 #include "iDecodeBase64.h"
+#include "iGetServices.h"
 
 DeclareInterface(IFactory)
 	InfMethod(ISearchDevice* createSearchDevice());
@@ -17,4 +18,5 @@ DeclareInterface(IFactory)
 	InfMethod(ICalculateDigest* createCalculateDigest());
 	InfMethod(IEncodeBase64* createEncodeBase64());
 	InfMethod(IDecodeBase64* createDecodeBase64());
+	InfMethod(IGetServices* createGetServices());
 EndInterface

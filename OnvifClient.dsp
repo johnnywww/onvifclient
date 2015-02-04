@@ -157,6 +157,19 @@ SOURCE=.\GetMediaProfilesImpl.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\GetServicesImpl.cpp
+
+!IF  "$(CFG)" == "OnvifClient - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "OnvifClient - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
 SOURCE=.\GetStreamUrlImpl.cpp
 
 !IF  "$(CFG)" == "OnvifClient - Win32 Release"
@@ -469,6 +482,10 @@ SOURCE=.\GetDeviceInformationImpl.h
 # Begin Source File
 
 SOURCE=.\GetMediaProfilesImpl.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\GetServicesImpl.h
 # End Source File
 # Begin Source File
 

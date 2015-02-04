@@ -24,6 +24,8 @@ public:
 // Dialog Data
 	//{{AFX_DATA(COnvifClientDlg)
 	enum { IDD = IDD_ONVIFCLIENT_DIALOG };
+	CEdit	m_EdtEPAddress;
+	CComboBox	m_ComboServiceAddress;
 	CComboBox	m_ComboMediaProfiles;
 	CEdit	m_EdtMediaUrl;
 	CEdit	m_EdtModel;
@@ -31,9 +33,7 @@ public:
 	CEdit	m_EdtMetaVersion;
 	CEdit	m_EdtUser;
 	CEdit	m_EdtType;
-	CEdit	m_EdtServiceAddress;
 	CEdit	m_EdtPassword;
-	CEdit	m_EdtEPAddress;
 	CListBox	m_LBoxScopes;
 	CListBox	m_LBoxDevices;
 	//}}AFX_DATA
@@ -82,6 +82,7 @@ private:
 	std::string getWindowTextStr(CWnd& wnd);
 	std::string getMediaEndPoint();
 	CBaseSoapSecurityInfo* getSoapSecurityInfo();
+	void clearServiceAddress();
 };
 
 //{{AFX_INSERT_LOCATION}}

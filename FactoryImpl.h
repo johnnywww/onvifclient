@@ -17,5 +17,6 @@ public:
 	ImplInfMethod(ICalculateDigest* createCalculateDigest());
 	ImplInfMethod(IEncodeBase64* createEncodeBase64());
 	ImplInfMethod(IDecodeBase64* createDecodeBase64());
+	ImplInfMethod(IGetServices* createGetServices());
 };
 
