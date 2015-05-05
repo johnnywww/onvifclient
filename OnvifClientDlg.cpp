@@ -20,6 +20,10 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+#ifdef _DEBUG
+#define new   new(_NORMAL_BLOCK, __FILE__, __LINE__)
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // CAboutDlg dialog used for App About
 
@@ -67,10 +71,16 @@ END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // COnvifClientDlg dialog
+inline void EnableMemLeakCheck()
+{
+	_CrtSetDbgFlag(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) | _CRTDBG_LEAK_CHECK_DF);
+}
 
 COnvifClientDlg::COnvifClientDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(COnvifClientDlg::IDD, pParent)
 {
+	EnableMemLeakCheck();
+	_CrtSetBreakAlloc(68);
 	//{{AFX_DATA_INIT(COnvifClientDlg)
 	//}}AFX_DATA_INIT
 	// Note that LoadIcon does not require a subsequent DestroyIcon in Win32

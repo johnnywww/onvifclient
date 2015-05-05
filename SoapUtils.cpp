@@ -5,7 +5,9 @@
 #include "iSetSoapSecurity.h"
 #include "FactoryImpl.h"
 
-#define SOAP_RECV_TIMEOUT 5
+#define SOAP_RECV_TIMEOUT 10
+#define SOAP_SEND_TIMEOUT 10
+#define SOAP_CONNECT_TIMEOUT 10
 
 CSoapUtils::CSoapUtils()
 {
@@ -27,8 +29,8 @@ struct soap* CSoapUtils::newSoap(CBaseSoapSecurityInfo* securityInfo)
 	}
 	soap_set_namespaces(psoap, namespaces);
 	psoap->recv_timeout = SOAP_RECV_TIMEOUT;
-	psoap->send_timeout    = 10;
-    psoap->connect_timeout = 10;
+	psoap->send_timeout    = SOAP_SEND_TIMEOUT;
+    psoap->connect_timeout = SOAP_CONNECT_TIMEOUT;
 	struct SOAP_ENV__Header* header = static_cast<struct SOAP_ENV__Header*>(my_soap_malloc(psoap, sizeof(struct SOAP_ENV__Header)));
 	
 	soap_default_SOAP_ENV__Header(psoap, header);
