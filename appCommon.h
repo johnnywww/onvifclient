@@ -34,7 +34,7 @@ extern "C"
 #define RET_CODE_ERROR_INVALID_IP -15
 #define RET_CODE_ERROR_NOT_RUN -10
 
-#define SOAP_ENDPOINT_AUTOSEARCH "soap.udp://239.255.255.250:3702"
+#define SOAP_ENDPOINT_AUTOSEARCH "soap.udp://239.255.255.250:3702/"
 #define NET_CARD_NAME "eth0"
 
 static const char base64digits[] =

@@ -47,8 +47,7 @@ CBaseRetInfo* CGetStreamUrlImpl::getInfo(std::string serviceAddress, std::string
 		return result;
 	}
 	_trt__GetStreamUri trt__GetStreamUri;
-	trt__GetStreamUri.ProfileToken = static_cast<char*>(CSoapUtils::getInstance().my_soap_malloc(psoap, sizeof(mediaProfile.length() + 1)));
-	strcpy(trt__GetStreamUri.ProfileToken, mediaProfile.c_str());
+	trt__GetStreamUri.ProfileToken = (char*)mediaProfile.c_str();
 	tt__StreamSetup streamSetup;
 	trt__GetStreamUri.StreamSetup = &streamSetup;
 	trt__GetStreamUri.StreamSetup->Stream = tt__StreamType__RTP_Unicast;

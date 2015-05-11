@@ -44,7 +44,7 @@ struct soap* CSoapUtils::newSoap(CBaseSoapSecurityInfo* securityInfo)
 		printf("create guid error\r\n");
 		return NULL;
 	}
-	
+	sprintf(guid_string, "{%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X}", guid.Data1, guid.Data2, guid.Data3, guid.Data4[1], guid.Data4[0], guid.Data4[7], guid.Data4[6], guid.Data4[5], guid.Data4[4], guid.Data4[3], guid.Data4[2]);
 	header->wsa__MessageID = static_cast<char*>(my_soap_malloc(psoap, 100));
 	strcpy(header->wsa__MessageID, guid_string);
 	psoap->header = header;
